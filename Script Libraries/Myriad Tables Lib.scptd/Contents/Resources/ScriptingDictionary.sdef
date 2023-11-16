@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary>
+	<suite name="Myriad Tables Suite" code="!©Mt" description="Take a seat.">
+        <class name="reference" code="obj " hidden="yes">
+            <synonym name="specifier"/>
+        </class>
+		<command name="display table with data" code="!©Mt!©dT" description="Create a table, and then display it.">
+			<direct-parameter description="A list where each item represents the data for a row in the table. The items should be sublists (representing rows) for multi-column tables, or of the same class for a single-column table. Rows with fewer items than the first will be padded out. In each column, all entries must be of the same class.">
+				<type type="any" list="yes">
+				</type>
+			</direct-parameter>
+			<parameter name="with title" description="Title for the window containing the table." code="appr" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="The message that appears at the top of the table's window." name="with prompt" code="prmp" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="Whether more than one table row can be selected. Default is false." name="multiple selections allowed" code="mlsl" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="Whether extra buttons appear at the bottom of the table, allowing you to insert or delete entries. Also enables insertion by dragging files, provided the cursor is within an editable text column when you let the mouse button up; this will add POSIX paths (or names if the shift key is down). Default is false." name="can add and delete" code="!©Ad" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="A list of the indexes of the table columns that should be editable. Pass an empty list to make all columns editable." name="editable columns" code="!©Ec" optional="yes">
+				<type type="integer" list="yes">
+				</type>
+			</parameter>
+			<parameter description="A list of the column headings. The default is not to have a heading row." name="column headings" code="!©Ch" optional="yes">
+				<type type="text" list="yes">
+				</type>
+			</parameter>
+			<parameter description="Whether to include a row number column. Default is false." name="row numbering" code="!©Rn" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="A list of the rows that will be selected when the dialog appears. Default is none selected." name="initially selected rows" code="!©Is" optional="yes">
+				<type type="integer" list="yes">
+				</type>
+			</parameter>
+			<parameter description="If false, the OK button and optional extra button are disabled if no table row is selected. Default is false." name="empty selection allowed" code="empL" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="By default, column types are based on the first sublist in the table data. However, you can provide a sample ‘row’ to be used instead. You may do this if the first row of the data could contain ‘missing value’, you do not want a column to appear, you wish text to be be displayed as bullets, or you wish to use popup menus or combo boxes. If provided, the number of items in this list is the number that will appear in each row, regardless of how many items a row actually contains. The template can consist of dummy values, like {&quot;&quot;, 1, true, current date, ...}, or class names like {text, integer, boolean, date, ...}. For a secure column, where entries appear as bullets, provide the text &quot;hidden&quot;. See the entries for the ‘popup menu‘ and ‘combo box’ classes for details on how to specify them." name="row template" code="!©Rt" optional="yes">
+				<type type="any" list="yes">
+				</type>
+			</parameter>
+			<parameter description="If true, row heights will adjust to fit when entries contain multiple paragraphs. Default is false. Requires version 1.0.6 or later." name="multiple lines allowed" code="!©El" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="The number of seconds to wait before dismissing the dialog automatically. The default is 0, which means never give up automatically." name="giving up after" code="givu" optional="yes">
+				<type type="any">
+				</type>
+			</parameter>
+			<parameter description="If true, double-clicking on a cell is the same as clicking the OK button, rather than a way of selecting the contents of an editable cell. Default is false. Requires version 1.0.7 or later." name="double click means OK" code="!©Ok" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<result description="A table reply record.">
+				<type type="table reply">
+				</type>
+			</result>
+		</command>
+		<command name="make new table with data" code="!©Mt!©Td" description="Create a table, which you can then modify using ‘modify table’ and ‘modify columns in table’, and display using ‘display table’.">
+			<direct-parameter description="A list where each item represents the data for a row in the table. The items should be sublists (representing rows) for multi-column tables, or of the same class for a single-column table. Rows with fewer items than the first will be padded out. In each column, all entries must be of the same class.">
+				<type type="any" list="yes">
+				</type>
+			</direct-parameter>
+			<parameter name="with title" description="Title for the window containing the table." code="appr" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="The message that appears at the top of the table's window." name="with prompt" code="prmp" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="Whether more than one table row can be selected. Default is false." name="multiple selections allowed" code="mlsl" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="Whether extra buttons appear at the bottom of the table, allowing you to insert or delete entries. Also enables insertion by dragging files, provided the cursor is within an editable text column when you let the mouse button up; this will add POSIX paths (or names if the shift key is down). Default is false." name="can add and delete" code="!©Ad" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="A list of the indexes of the table columns that should be editable. Pass an empty list to make all columns editable." name="editable columns" code="!©Ec" optional="yes">
+				<type type="integer" list="yes">
+				</type>
+			</parameter>
+			<parameter description="A list of the column headings. The default is not to have a heading row." name="column headings" code="!©Ch" optional="yes">
+				<type type="text" list="yes">
+				</type>
+			</parameter>
+			<parameter description="Whether to include a row number column. Default is false." name="row numbering" code="!©Rn" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="A list of the rows that will be selected when the table appears. Default is none selected." name="initially selected rows" code="!©Is" optional="yes">
+				<type type="integer" list="yes">
+				</type>
+			</parameter>
+			<parameter description="If false, the OK button and optional extra button are disabled if no table row is selected. Default is false." name="empty selection allowed" code="empL" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="By default, column types are based on the first sublist in the table data. However, you can provide a sample ‘row’ to be used instead. You may do this if the first row of the data could contain ‘missing value’, you do not want a column to appear, you wish text to be be displayed as bullets, or you wish to use popup menus or combo boxes. If provided, the number of items in this list is the number that will appear in each row, regardless of how many items a row actually contains. The template can consist of dummy values, like {&quot;&quot;, 1, true, current date, ...}, or class names like {text, integer, boolean, date, ...}. For a secure column, where entries appear as bullets, provide the text &quot;hidden&quot;. See the entries for the ‘popup menu‘ and ‘combo box’ classes for details on how to specify them." name="row template" code="!©Rt" optional="yes">
+				<type type="any" list="yes">
+				</type>
+			</parameter>
+			<parameter description="If true, row heights will adjust to fit when entries contain multiple paragraphs. Default is false. Requires version 1.0.6 or later." name="multiple lines allowed" code="!©El" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="If true, double-clicking on a cell is the same as clicking the OK button, rather than a way of selecting the contents of an editable cell. Default is false. Requires version 1.0.7 or later." name="double click means OK" code="!©Ok" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<result description="A table you can modify further, or show using ‘display table’.">
+				<type type="any">
+				</type>
+			</result>
+		</command>
+		<command name="display table" code="!©Mt!©Sd" description="Displays a table created with ‘make new table with data’.">
+			<direct-parameter description="The table.">
+				<type type="any">
+				</type>
+			</direct-parameter>
+			<parameter name="giving up after" description="The number of seconds to wait before dismissing the table's window automatically. The default is 0, which means never give up automatically." code="givu" optional="yes">
+				<type type="real">
+				</type>
+			</parameter>
+			<parameter name="extended results" description="Whether to return an ‘extended table reply’ instead of a standard ‘table reply’. Default is false." code="!©Sx" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<result description="A ‘table reply’ or ‘extended table reply’ record.">
+				<type type="table reply">
+				</type>
+				<type type="extended table reply">
+				</type>
+			</result>
+		</command>
+		<command name="modify table" code="!©Mt!©Tm" description="Lets you change various aspects of a table created with ‘make new table with data’.">
+			<direct-parameter description="The table dialog.">
+				<type type="any">
+				</type>
+			</direct-parameter>
+			<parameter name="OK button name" description="Changes the title of the OK button." code="okbt" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="Controls whether the OK button responds to the return key. Default is true." name="OK button is default" code="!©Od" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="Changes the title of the Cancel button." name="cancel button name" code="cnbt" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="If provided, an extra button with this title will be added to the right of the Cancel button." name="extra button name" code="!©Eb" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="The style for column and row rules. The default is no rules." name="grid style" code="!©Gs" optional="yes">
+				<type type="grid styling">
+				</type>
+			</parameter>
+			<parameter description="A list that lets you set a pattern for column widths. For example, {1, 2, 2, 1} would mean columns 1 and 4 would be equal width, as would 2 and 3." name="column widths pattern" code="!©Cw" optional="yes">
+				<type type="integer" list="yes">
+				</type>
+			</parameter>
+			<parameter description="A list of rows to be highlighted with a yellow background." name="highlighted rows" code="!©Hr" optional="yes">
+				<type type="integer" list="yes">
+				</type>
+			</parameter>
+			<parameter description="If true, alternate rows will have a shaded background. Default is false." name="alternate backgrounds" code="!©Ab" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="If true, rows can be reordered by dragging. Default is false." name="row dragging" code="!©Rd" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="If true, columns can be reordered by dragging. Default is true." name="column reordering" code="!©Cr" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="One for the serious geeks. Pass in an NSView less than 200pts high and 600pts wide, and it will be added to the dialog above the buttons. Consider it experimental." name="accessory view" code="!©Av" optional="yes">
+				<type type="any">
+				</type>
+			</parameter>
+			<parameter description="If true, the Cancel button will not be visible. Default is false. Requires version 1.0.6 or later." name="hidden cancel button" code="!©Cb" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="A list of either two or four numbers that set the initial position of the dialog. Format is {x, y} to set the top-left position, or {x, y, width, height} to set both position and size. The width must be 200 or greater (300 if the third button is used) and the height 250 or greater, and coordinates may be overridden if required. If not provided or missing value, the dialog will be centered. Requires version 1.0.7 or later." name="initial position" code="!©Ip" optional="yes">
+				<type type="number" list="yes">
+				</type>
+			</parameter>
+		</command>
+		<enumeration name="grid styling" code="!©GS" description="Grid styling alternatives.">
+			<enumerator name="grid none" code="!©gN" description="No grid. This is the default.">
+			</enumerator>
+			<enumerator name="grid between rows" code="!©gH" description="Rules between rows.">
+			</enumerator>
+			<enumerator name="grid between columns" code="!©gV" description="Rules between columns.">
+			</enumerator>
+			<enumerator name="grid between rows dashed" code="!©gD" description="Dashed rules between rows.">
+			</enumerator>
+			<enumerator name="grid both" code="!©gB" description="Rules between rows and columns.">
+			</enumerator>
+			<enumerator name="grid both dashed between rows" code="!©g+" description="Rules between rows and columns, with the row rules dashed.">
+			</enumerator>
+		</enumeration>
+		<command name="modify columns in table" code="!©Mt!©Mc" description="Modify the appearance of one or more columns of a table created with ‘make new table with data’.">
+			<direct-parameter description="The table containing the columns.">
+				<type type="any">
+				</type>
+			</direct-parameter>
+			<parameter name="columns list" description="A list of columns to modify. If not specified, or an empty list is passed, the changes apply to all relevant columns." code="!©Cl" optional="yes">
+				<type type="integer" list="yes">
+				</type>
+			</parameter>
+			<parameter description="The column width. A width of 0 means automatic sizing, and the minimum is 10 points. The default is 0." name="column width" code="!©Cw" optional="yes">
+				<type type="real">
+				</type>
+			</parameter>
+			<parameter description="Ignored for all but text, popup and combobox columns, or where the ‘sorting column‘ specified is one of these. The default is localized case sensitive." name="sort method" code="!©Ss" optional="yes">
+				<type type="sorting style">
+				</type>
+			</parameter>
+			<parameter description="The index of the data column to use as the basis of the specified column's sorting. Use this if you want to sort a column based on a non-visible column, for example." name="sorting data column" code="!©Sc" optional="yes">
+				<type type="integer">
+				</type>
+			</parameter>
+			<parameter description="When entries overflow, this determines how they will be truncated. Default is truncate middle for dates, and truncate tail for all others." name="truncation style" code="!©Ts" optional="yes">
+				<type type="truncation method">
+				</type>
+			</parameter>
+			<parameter description="Sets the alignment of the column heading. Default is align natural (matches the direction of the script)." name="head alignment" code="!©Ha" optional="yes">
+				<type type="alignment method">
+				</type>
+			</parameter>
+			<parameter description="Sets the alignment of column entries. Default is align natural for text and dates, and align right for numbers. Ignored for checkboxes, which are always centered, popups, and comboboxes." name="entry alignment" code="!©Ea" optional="yes">
+				<type type="alignment method">
+				</type>
+			</parameter>
+			<parameter description="Format string for dates. Ignored by non-date columns. Default is the short date format set in System Preferences. See &lt;http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns&gt;" name="date format" code="!©Df" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="Format to be used for dates, based on the format the user has set in System Preferences. You need to provide a list of two ‘user date formatting’ values, the first for the date and the second for the time. For example: {user format short, user format short}. Ignored by non-date columns, or if a ‘date format’ parameter has been specified." name="user date format" code="!©Du" optional="yes">
+				<type type="user date formatting" list="yes">
+				</type>
+			</parameter>
+			<parameter description="Format string for columns of reals. Ignored by other columns. Default is &quot;#,##0.00;-#,##0.00&quot;. See &lt;http://www.unicode.org/reports/tr35/tr35-31/tr35-numbers.html#Number_Format_Patterns&gt;" name="real format" code="!©Rf" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="Format string for columns of integers. Ignored by other columns. Default is &quot;#,###0;-#,##0&quot;. See &lt;http://www.unicode.org/reports/tr35/tr35-31/tr35-numbers.html#Number_Format_Patterns&gt;" name="integer format" code="!©If" optional="yes">
+				<type type="text">
+				</type>
+			</parameter>
+			<parameter description="Sets whether column entries should appear in bold type. Default is false. Requires version 1.0.6 or later." name="bold type" code="!©Bt" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="Sets whether column entries should use a variation of the San Francisco fonts that has monospaced digits. Default is false. This is only avaliable on macOS 10.11 and later, and will be ignored on earlier versions. Requires version 1.0.6 or later of Myriad Tables Lib." name="monospaced digits" code="!©Mo" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+			<parameter description="Sets whether values in numeric columns should appear in red where they represent negative values. Default is false. Requires version 1.0.6 or later." name="red negatives" code="!©Re" optional="yes">
+				<type type="boolean">
+				</type>
+			</parameter>
+		</command>
+		<enumeration name="sorting style" code="!©So" description="Sort order for text, popup and combobox columns.">
+			<enumerator name="sort case insensitive" code="!©Ic" description="Sorts ignoring case.">
+			</enumerator>
+			<enumerator name="sort case sensitive" code="!©Cs" description="Sorts considering case.">
+			</enumerator>
+			<enumerator name="sort localized case insensitive" code="!©Li" description="Sorts using the sort order of your locale.">
+			</enumerator>
+			<enumerator name="sort localized case sensitive" code="!©Lc" description="Sort considering case and your locale.">
+			</enumerator>
+			<enumerator name="sort as Finder" code="!©Fs" description="Sorts considering numeric values, as used by the Finder.">
+			</enumerator>
+			<enumerator name="sort none" code="!©No" description="Makes the column unsortable.">
+			</enumerator>
+		</enumeration>
+		<enumeration name="truncation method" code="!©TM" description="Truncation method for entries that exceed the width of a column.">
+			<enumerator name="truncate middle" code="!©Mm" description="Truncate the middle.">
+			</enumerator>
+			<enumerator name="truncate tail" code="!©Tt" description="Truncates the tail.">
+			</enumerator>
+			<enumerator name="truncate head" code="!©Th" description="Truncates the head.">
+			</enumerator>
+		</enumeration>
+		<enumeration name="alignment method" code="!©Am" description="How the content is aligned.">
+			<enumerator name="align natural" code="!©An" description="Matches the natural order of the script. Default for text and date entries, and all heads.">
+			</enumerator>
+			<enumerator name="align left" code="!©Al" description="Align left.">
+			</enumerator>
+			<enumerator name="align center" code="!©Ac" description="Align center.">
+			</enumerator>
+			<enumerator name="align right" code="!©Ar" description="Align right.">
+			</enumerator>
+		</enumeration>
+		<enumeration name="user date formatting" code="!©Ud" description="How the date or time is formatted, based on the user's System Preferences. Requires version 1.0.5 or later.">
+			<enumerator name="user format none" code="!©Un" description="The date or time with this format is omitted.">
+			</enumerator>
+			<enumerator name="user format short" code="!©Us" description="Specifies a short style, typically numeric only, such as “11/23/37” or “3:30 PM”.">
+			</enumerator>
+			<enumerator name="user format medium" code="!©Um" description="Specifies a medium style, typically with abbreviated text, such as “Nov 23, 1937” or “3:30:32 PM”.">
+			</enumerator>
+			<enumerator name="user format long" code="!©Ul" description="Specifies a long style, typically with full text, such as “November 23, 1937” or “3:30:32 PM PST”.">
+			</enumerator>
+			<enumerator name="user format full" code="!©Uf" description="Specifies a full style with complete details, such as “Tuesday, April 12, 1952 AD” or “3:30:42 PM Pacific Standard Time”.">
+			</enumerator>
+		</enumeration>
+		<record-type name="table reply" code="!©Zr" description="Reply record for the ‘display table with data’ and ‘display table’ commands.">
+			<property name="button number" code="!©Zb" access="r" description="This is 1 if the OK button was pressed, 2 if the extra button was pressed, and 0 if the dialog timed out.">
+				<type type="integer">
+				</type>
+			</property>
+			<property name="values returned" code="!©Zd" access="r" description="The table data as modified.">
+				<type type="any" list="yes">
+				</type>
+			</property>
+			<property name="rows selected" code="!©Zs" access="r" description="A list of the indexes of the selected table rows.">
+				<type type="integer" list="yes">
+				</type>
+			</property>
+			<property name="values selected" code="!©Zv" access="r" description="A list of the contents of the selected table rows.">
+				<type type="any" list="yes">
+				</type>
+			</property>
+			<property name="final position" code="!©Fp" access="r" description="The position of the window when it closed, in the form {x, y, width, height}. Requires version 1.0.7 or later.">
+				<type type="real" list="yes">
+				</type>
+			</property>
+			<property name="timed out" code="!©Zt" access="r" description="Did the dialog time out?">
+				<type type="boolean">
+				</type>
+			</property>
+		</record-type>
+		<record-type name="extended table reply" code="!©Zx" description="Reply record for the ‘display table’ command when the ‘extended results’ paramter is true.">
+			<property name="button number" code="!©Zb" access="r" description="This is 1 if the OK button was pressed, 2 if the extra button was pressed, and 0 if the dialog timed out.">
+				<type type="integer">
+				</type>
+			</property>
+			<property name="values returned" code="!©Zd" access="r" description="The table data as modified.">
+				<type type="any" list="yes">
+				</type>
+			</property>
+			<property name="rows selected" code="!©Zs" access="r" description="A list of the indexes of the selected table rows.">
+				<type type="integer" list="yes">
+				</type>
+			</property>
+			<property name="values selected" code="!©Zv" access="r" description="A list of the contents of the selected table rows.">
+				<type type="any" list="yes">
+				</type>
+			</property>
+			<property name="final position" code="!©Fp" access="r" description="The position of the window when it closed, in the form {x, y, width, height}. Requires version 1.0.7 or later.">
+				<type type="real" list="yes">
+				</type>
+			</property>
+			<property name="timed out" code="!©Zt" access="r" description="Did the dialog time out?">
+				<type type="boolean">
+				</type>
+			</property>
+			<property name="altered rows" code="!©Za" access="r" description="Returned only if the ‘extended results’ parameter of the ‘display table’ command is true. A list of the rows in the output that do not match their equivalent rows in the input. Each entry is a list of two numbers: the index of the row in the original data, and its index in the returned data.">
+				<type type="any" list="yes">
+				</type>
+			</property>
+			<property name="deleted rows" code="!©Ze" access="r" description="Returned only if the ‘extended results’ parameter of the ‘display table’ command is true. A list of the indexes of any rows that were deleted from the original data. The indexes are based on their order in the original data.">
+				<type type="integer" list="yes">
+				</type>
+			</property>
+			<property name="added rows" code="!©Zp" access="r" description="Returned only if the ‘extended results’ parameter of the ‘display table’ command is true. A list of the indexes of any rows that were added to the returned data. The indexes are based on their order in the returned data.">
+				<type type="integer" list="yes">
+				</type>
+			</property>
+			<property name="order of rows" code="!©Zo" access="r" description="Returned only if the ‘extended results’ parameter of the ‘display table’ command is true. A list of the indexes of all returned rows, in order. The indexes are based on their order in the original data. Inserted rows are indexed in the order in which they were added.">
+				<type type="integer" list="yes">
+				</type>
+			</property>
+		</record-type>
+		<class name="combo box" code="comB" description="A type of text field with a menu of suggestions atttached. You use this in the ‘row template’ parameter to the ‘display table with data’ and ‘make new table with data’ commands.">
+			<documentation>
+				<html>
+					&lt;p&gt; Assuming you wish to have a combo box in the first column, with three items in its menu, you would specify it like this:&lt;/p&gt; &lt;pre&gt;&lt;span class="code"&gt;display table with data someData row template {{combo box, {"One", "Two", "Three"}}, ...&lt;/span&gt;&lt;/pre&gt; &lt;p&gt;You can also use the integer &lt;span class="code"&gt;2&lt;/span&gt; instead of &lt;span class="code"&gt;combo box&lt;/span&gt;&lt;/p&gt; 
+				</html>
+			</documentation>
+		</class>
+		<class name="popup menu" code="!©Pm" description="A popup menu. You use this in the ‘row template’ parameter to the ‘display table with data’ and ‘make new table with data’ commands.">
+			<documentation>
+				<html>
+					&lt;p&gt; Assuming you wish to have a popup menu with three items in the first column, you would specify it like this:&lt;/p&gt; &lt;pre&gt;&lt;span class="code"&gt;display table with data someData row template {{popup menu, {"One", "Two", "Three"}}, ...&lt;/span&gt;&lt;/pre&gt; &lt;p&gt;You can also use the integer &lt;span class="code"&gt;1&lt;/span&gt; instead of &lt;span class="code"&gt;popup menu&lt;/span&gt;&lt;/p&gt; 
+				</html>
+			</documentation>
+		</class>
+	</suite>
+	<suite name="Myriad Table Utilities Suite" code="!©M1" description="Some commands for manipulating lists before or after showing a table.">
+		<command name="swap columns and rows in" code="!©M1!©cR" description="Works on a list of lists. The result will also be a list of lists, where the first list will consist of the first item of each of the original lists, and so on. Calling it a second time effectively returns the list to its original value.">
+			<direct-parameter description="A list of sublists, each containing the same number of entries.">
+				<type type="any" list="yes">
+				</type>
+			</direct-parameter>
+			<result description="A list of sublists.">
+				<type type="any" list="yes">
+				</type>
+			</result>
+		</command>
+		<command name="extract column" code="!©M1!©cE" description="Extracts a column of values when passed a list of sublists representing rows.">
+			<direct-parameter description="The index of the item you wish extracted from each row/sublist.">
+				<type type="integer">
+				</type>
+			</direct-parameter>
+			<parameter description="A list of lists, where each sublist represents a row." name="from" code="!©S1" optional="no">
+				<type type="any" list="yes">
+				</type>
+			</parameter>
+			<result description="A list representing the requested column.">
+				<type type="any" list="yes">
+				</type>
+			</result>
+		</command>
+	</suite>
+</dictionary>

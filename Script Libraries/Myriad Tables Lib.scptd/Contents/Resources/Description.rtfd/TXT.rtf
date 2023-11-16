@@ -1,0 +1,1054 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2708
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Verdana-Bold;
+\f3\fnil\fcharset0 Verdana;\f4\fnil\fcharset0 Verdana-Italic;\f5\fswiss\fcharset0 Helvetica-Oblique;
+\f6\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red0\green22\blue176;
+\red64\green128\blue0;\red108\green5\blue211;\red0\green22\blue176;\red108\green5\blue211;\red68\green21\blue176;
+\red64\green128\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c0\c8627\c69020;
+\csgenericrgb\c25098\c50196\c0;\csgenericrgb\c42353\c1961\c82745;\csgenericrgb\c0\c8700\c69000;\csgenericrgb\c42300\c1800\c82800;\csgenericrgb\c26667\c8235\c69020;
+\csgenericrgb\c25000\c50000\c0;}
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs48 \cf0 Myriad Tables Lib v1.0.13\
+
+\f1\b0\fs28 \
+
+\f0\b Myriad Tables Lib
+\f1\b0  is a script library that gives AppleScript scripts the ability to show dialogs containing tables. It requires OS X 10.11 or later. See the separate 
+\f0\b Start Here.rtf
+\f1\b0  document for installation details.\
+\
+You cannot call it within application tell blocks, and it cannot be called from JXA scripts.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs32 \cf0 Important: Scripts using Myriad Tables cannot be edited in Script Editor in Mojave and later because of new security settings, so you need to use Script Debugger, version 7 or later.  You also cannot use it in scripts run from Apple\'92s Scripts menu, but they run fine from FastScripts.app\'92s menu.\
+\
+\\Version 1.0.13
+\f1\b0  contains a universal Intel/Apple silicon framework, which is code-signed. It will work on all versions from macOS 10.11 on, but because it is signed, you cannot embed it in applets unless you code-sign them too
+\f0\b  
+\f1\b0 (applets are automatically code-signed in recent versions of macOS).
+\fs28 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Using the library
+\f1\b0\fs28 \
+\
+AppleScript can already show a simple single-column table, using the 
+\f0\b choose from list
+\f1\b0  command in standard additions. 
+\f0\b Myriad Tables Lib
+\f1\b0  lets you add more columns, and different types of columns, as well as giving you control over many aspects of the dialog's appearance and behavior.\
+\
+To use it in your scripts, once it is installed you begin your script with the line:\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf2 use
+\f3\b0  
+\f4\i \cf3 script
+\f3\i0 \cf2  "Myriad Tables Lib" \cf3 version\cf2  \cf0 "\cf2 1.0.13\cf0 "\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+You will probably also want to add "
+\f2\b use
+\f3\b0  
+\f4\i \cf3 scripting additions
+\f1\i0 \cf0 " if your script uses any scripting addition commands.\
+\
+To show a simple dialog similar to that of 
+\f0\b choose from list
+\f1\b0 , you can use the 
+\f0\b display table with data
+\f1\b0  command like this:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{"One", "Two", "Three", "Four", "Five"\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+It also supports several of the optional parameters available in 
+\f5\i choose from list
+\f1\i0 . For example:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{"One", "Two", "Three", "Four", "Five"\} \cf4 with title\cf0  "Simple table" \cf4 with prompt\cf0  "Pick several, or none at all" 
+\f2\b with
+\f3\b0  \cf4 multiple selections allowed\cf0  
+\f2\b without
+\f3\b0  \cf4 empty selection allowed\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+Perhaps the main difference you will notice in a simple table like this is that double-clicking an entry will not close the dialog, as it does with 
+\f0\b choose from list
+\f1\b0 . That is because these tables can contain editable entries, and double-clicking is used to begin editing a cell.\
+\
+To keep code a bit simpler, we will mostly leave the extra parameters aside for the moment, but they work as you might expect. In 
+\f0\b choose from list
+\f1\b0  there is also a 
+\f5\i default items
+\f1\i0  parameter, and 
+\f0\b display table with data
+\f1\b0  has a near equivalent called 
+\f5\i initially selected rows
+\f1\i0 ; the only difference is that it only takes a list of row numbers, not text.\
+\
+You can also use this:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{1, 2, 3, 4, 5\} \cf4 with prompt\cf0  "Pick an integer"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+In this case the dialog will look a bit different because the values are recognised as numbers, and therefore aligned-right by default.\
+\
+This code:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{1.1, 2.2, 3.3, 4.4, 5.5\} \cf4 with prompt\cf0  "Pick a real"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+will also result in right-aligned values, but this time they will be treated as reals, and will by default appear with two decimal numbers.\
+\
+The type of column is dictated by the class of the first row in the column, and normally you cannot mix different classes in a column; the exception is that integers, reals and booleans can be mixed, because they all represent numbers. For example, this table treats all values as reals because the first item is a real:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{1.0, 2, 3, 4, 5\} \cf4 with prompt\cf0  "Pick a real"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+Here is an example using dates:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 someDate\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 current date
+\f3\b0 \cf0 \
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\cf5 someDate\cf0 , \cf5 someDate\cf0  + 1 * \cf6 days\cf0 , \cf5 someDate\cf0  + 2 * \cf6 days\cf0 , \cf5 someDate\cf0  + 3 * \cf6 days\cf0 , \cf5 someDate\cf0  + 4 * \cf6 days\cf0 \} \cf4 with prompt\cf0  "Pick a date"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+In this case the default format of the column is the format you have set for short date in System Preferences.\
+\
+You can also display a multi-column table by providing a list of lists, where each list represents a row. Again, the column type is based on the class of the items in the first row, and classes must match within columns. So this code:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 with prompt\cf0  "This shows checkboxes, but they can't be clicked"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+will produce a table with two columns, and because the first column contains boolean values, it will be formatted as a column of checkboxes. But such a table will not generally be what you want, because by default, items in a table are editable, and that includes checkboxes. It is simple to designate which columns you want editable, so this would be more useful code:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 editable columns\cf0  \{1\} \cf4 with prompt\cf0  "These checkboxes can be clicked" 
+\f2\b with
+\f3\b0  \cf4 empty selection allowed\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+Now you can click on any of the checkboxes.\
+\
+Another optional parameter is 
+\f5\i column headings
+\f1\i0 . With this, you pass a list of strings to appear as headings on the columns. This not only adds a header row to the table, but it also makes all columns sortable. So you can create a table like this:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 editable columns\cf0  \{1\} \cf4 column headings\cf0  \{"", "Number"\} \cf4 with prompt\cf0  "These columns have headings"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+Clicking on any of the heads will sort the table; a second click will reverse the order.\
+\
+By giving the checkbox column a head of "", you also ensure that it does not expand in width when the table is resized. This raises an important difference from dialogs like 
+\f5\i choose from list
+\f1\i0  and 
+\f5\i display dialog
+\f1\i0 : table windows are fully resizeable. You can drag to resize them, or click on the green button to make them full-screen. When you resize a table dialog, the columns will generally expand and contract uniformly (apart from checkboxes as noted above). The exception is when the unresized table is wider than 75% of your screen width, in which case you can make the window bigger or smaller, and scroll horizontally. (You can also generally resize columns manually to your heart's content.)\
+\
+Sometimes you may wish to add, insert or delete rows in a table, and to allow this you set the 
+\f5\i can add and delete
+\f1\i0  parameter to true. Then two small buttons appear under the table, allowing you to delete the selected rows, and to insert a new row if one is selected, otherwise to add a new row at the end. Here is an example:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One", 1\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two", 2\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three", 3\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four", 4\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five", 5\}\} \cf4 editable columns\cf0  \{\} \cf4 with prompt\cf0  "You can insert/add/delete and edit every cell" 
+\f2\b with
+\f3\b0  \cf4 can add and delete\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+There are a few things to notice here. Passing \{\} for 
+\f5\i editable columns
+\f1\i0  makes all columns editable, and that's usually what you will want if you allow adding new entries. When you try to delete a row, a confirmation dialog will appear because it cannot be undone. When you insert a new row, what appears depends on the column type. In the case of text columns, the cells will contain an empty string. In the case of dates or numbers, the cells will will appear with the word 
+\f5\i nil
+\f1\i0  or a dummy formatted date in placeholder style, and the resulting value will be 
+\f5\i missing value
+\f1\i0 . In checkbox columns the mixed-state checkbox will appear, and again the value will be 
+\f5\i missing value
+\f1\i0 . (If you want to change any checkbox to the mixed-state, hold down the shift key while clicking on it.)\
+\
+When you enable adding and deleting of rows, you also enable drag-and-drop from the Finder. So you can drag a file or files into the table, into the column you want them to appear (which must of course be editable), and a new row or rows will be added with the POSIX path of the file(s) inserted in the target column. If you hold the shift key, only the names will be entered.\
+\
+One thing to note about 
+\f5\i missing value
+\f1\i0 : you can also have 
+\f5\i missing value
+\f1\i0  entries in your initial data, but in text columns there is no distinction between an empty string ("") and 
+\f5\i missing value
+\f1\i0 , so the values will be returned as "". In number, date and checkbox columns, 
+\f5\i missing value
+\f1\i0  entries will be retained (unless changed by the user, of course).\
+\
+This raises the question of how to handle data where the first row might contain a value of 
+\f5\i missing value
+\f1\i0 , and that is where the 
+\f5\i row template
+\f1\i0  parameter can be used. Normally the column types are based on the first row of the data, but you can provide a dummy row of values to be used instead. Consider this example:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf3 missing value
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf3 missing value
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf3 missing value
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 editable columns\cf0  \{1\} \cf4 row template\cf0  \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , ""\} \cf4 with prompt\cf0  "You can edit the checkboxes. Some are in mixed-state mode"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+The first row contains a 
+\f5\i missing value
+\f1\i0  entry, but it does not matter \'97 the 
+\f5\i row template
+\f1\i0  parameter is used instead.\
+\
+Another use for a row template is to hide columns. This script uses another command from the library, 
+\f5\i swap columns and rows in
+\f1\i0 , to rearrange two lists first:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theNicknames\cf0  
+\f2\b to
+\f3\b0  \{"Rambo", "Hulk", "Superman", "Spiderwoman"\}\
+
+\f2\b set
+\f3\b0  \cf5 theRealnames\cf0  
+\f2\b to
+\f3\b0  \{"Joe Blow", "Pete Smith", "Clark Kent", "Jane Doe"\}\
+
+\f2\b set
+\f3\b0  \cf5 theData\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 swap columns and rows in
+\f3\b0 \cf0  \{\cf5 theNicknames\cf0 , \cf5 theRealnames\cf0 \}\
+
+\f2\b set
+\f3\b0  \cf5 theResult\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \cf5 theData\cf0  \cf4 row template\cf0  \{"", 
+\f4\i \cf3 missing value
+\f3\i0 \cf0 \}\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+\cf0 This effectively hides the second column. Where possible, you should try to keep any columns you wish to hide at the end of the list, to avoid confusion between 
+\f5\i table column indexes
+\f1\i0  and 
+\f5\i data column indexes
+\f1\i0 . Also, if you have a column with data that is not one of the classes supported in tables, it will not appear in the table, and will be returned more or less intact (see the section on results for the details). Again, such columns are best kept at the end if possible.\
+\
+A third use for a row template is when you wish to display a popup menu or a combo box (a kind of text field with a menu of suggested values attached) in a column. To do this, you make up a row template, and where you wish a popup menu to appear, you put a list. The first item of this list should be 
+\f5\i popup menu
+\f1\i0 , and the second item should be a list of titles for the menu items of the menu. The actual values in your data should be strings (or missing value). So here is an example of a table with a popup menu in the third column:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{"One", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 1, "One"\}, \{"Two", 
+\f4\i \cf6 false
+\f3\i0 \cf0 , 2, "Two"\}, \{"Three", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 3, "Three"\}, \{"Four", 
+\f4\i \cf6 false
+\f3\i0 \cf0 , 4, "Four"\}, \{"Five", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 5, "Five"\}\} \cf4 editable columns\cf0  \{1, 2, 3\} \cf4 column headings\cf0  \{"Number", "", "Digit", "Match"\} \cf4 row template\cf0  \{"", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 1, \{
+\f4\i \cf4 popup menu
+\f3\i0 \cf0 , \{"One", "Two", "Three"\}\}\} \cf4 with prompt\cf0  "This table has a column with popup menus"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+One thing to notice here is that I did not include column 4 in the editable columns list \'97 there is no need, because popup menus and combo boxes are always editable.\
+\
+To display combo boxes, you do the same thing but this time use the 
+\f5\i combo box
+\f1\i0  instead of 
+\f5\i popup menu
+\f1\i0 :\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{"One", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 1, "One"\}, \{"Two", 
+\f4\i \cf6 false
+\f3\i0 \cf0 , 2, "Two"\}, \{"Three", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 3, "Three"\}, \{"Four", 
+\f4\i \cf6 false
+\f3\i0 \cf0 , 4, "Four"\}, \{"Five", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 5, "Five"\}\} \cf4 editable columns\cf0  \{1, 2, 3\} \cf4 column headings\cf0  \{"Number", "", "Digit", "Match"\} \cf4 row template\cf0  \{"", 
+\f4\i \cf6 true
+\f3\i0 \cf0 , 1, \{
+\f4\i \cf4 combo box
+\f3\i0 \cf0 , \{"One", "Two", "Three"\}\}\} \cf4 with prompt\cf0  "This table has a column with combo boxes"\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+Another optional parameter is 
+\f5\i row numbering
+\f1\i0 . If you set this to true, rows will appear with a row number on a tint background in the first column. Here is a simple example:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 with prompt\cf0  "Note the row number column" 
+\f2\b with
+\f3\b0  \cf4 row numbering\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+As of version 1.0.6 you can also display multiple lines within text cells by specifying the 
+\f5\i multiple lines allowed 
+\f1\i0 parameter. The text needs to be in paragraphs separated by a return, linefeed, or Unicode line separator. If the text is editable, you can enter a linefeed in the interface by holding down the option key as you hit the return key.. Here is a simple example:\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf7 display table with data
+\f3\b0 \cf2  \{\{"One", "One", \cf8 true\cf2 \}, \{"Two", "One" & \cf8 return\cf2  & "two", \cf8 true\cf2 \}, \{"Three", "One" & \cf8 return\cf2  & "two" & \cf8 return\cf2  & "three", \cf8 true\cf2 \}, \{"Four", "One" & \cf8 return\cf2  & "two" & \cf8 return\cf2  & "three" & \cf8 return\cf2  & "four", \cf8 true\cf2 \}, \{"Five", "One" & \cf8 linefeed\cf2  & "two" & \cf8 linefeed\cf2  & "three" & \cf8 linefeed\cf2  & "four" & \cf8 linefeed\cf2  & "five", \cf8 false\cf2 \}\} \cf7 with prompt\cf2  "This table allows multiple lines within cells" 
+\f2\b with
+\f3\b0  \cf7 multiple lines allowed\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+Finally, you can set a timeout value, after which the dialog will close itself, using the 
+\f5\i giving up after
+\f1\i0  parameter. The default value is 0, which means never give up. Here is a table that will dismiss itself after three seconds:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 display table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 with prompt\cf0  "Wait 3 seconds" \cf4 giving up after\cf0  3 
+\f2\b with
+\f3\b0  \cf4 row numbering
+\f1 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+\cf0 \
+Version 1.0.7 introduces a new boolean parameter, 
+\f5\i double click means OK
+\f1\i0 . When true, double-clicking on a cell is equivalent to hitting the OK key, similar to the behavior of Standard Additions\'92 
+\f5\i choose from list
+\f1\i0 . This is best avoided when you have editable cells, because double-clicking will no longer be available to begin editing.\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf7 display table with data
+\f3\b0 \cf2  \{"One", "Two", "Three", "Four", "Five"\} \cf7 with title\cf2  "Simple table" \cf7 with prompt\cf2  "You can double-click an entry rather than selecting and pressing OK" 
+\f2\b with
+\f3\b0  \cf7 double click means OK\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Extra control\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+The above parameters give you a lot of control over how a table appears and behaves, but you control quite a few others with a bit of extra code. So far, we have been creating and showing the table with a single command. To exercise further control, the process is first to create the table, using the 
+\f0\b make new table with data
+\f1\b0  command and any of the parameters above (except for 
+\f5\i giving up after
+\f1\i0 ), then to modify it using one or two extra commands, and finally to display it using the 
+\f0\b display table
+\f1\b0  command. Here's the last example table, but this time using the modify table command to set the titles of the OK and cancel buttons:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theTable\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 make new table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 with prompt\cf0  "Wait 3 seconds" 
+\f2\b with
+\f3\b0  \cf4 row numbering\cf0 \
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 modify table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 OK button name\cf0  "Continue" \cf4 cancel button name\cf0  "Stop"\
+
+\f2\b \cf4 display table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 giving up after\cf0  3\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+The 
+\f0\b modify table
+\f1\b0  command has several other parameters, and all are optional. For example, there is an 
+\f5\i extra button name
+\f1\i0  parameter \'97 supply a name and the dialog will contain a third button, to the left of the OK button:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theTable\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 make new table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 with prompt\cf0  "This dialog has an extra a button" 
+\f2\b with
+\f3\b0  \cf4 row numbering\cf0 \
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 modify table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 extra button name\cf0  "D'oh"\
+
+\f2\b \cf4 display table
+\f3\b0 \cf0  \cf5 theTable\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+If the extra button is pressed, the button number of the table reply will be 2.\
+\
+Version 1.0.6 introduces a new boolean parameter, 
+\f5\i hidden cancel button
+\f1\i0 , which you can specify to stop the cancel button from appearing.\
+\
+There are several properties that affect the appearance of the table: 
+\f5\i grid style
+\f1\i0  lets you add rules between columns and/or rows, 
+\f5\i highlighted rows
+\f1\i0  takes a list of row numbers and will highlight them with a yellow background, and 
+\f5\i alternate backgrounds
+\f1\i0  will shade the background of alternate rows. Here is an example:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theTable\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 make new table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Six"\}\} \cf4 with prompt\cf0  "Note the shading and highlighting" 
+\f2\b with
+\f3\b0  \cf4 row numbering\cf0 \
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 modify table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 grid style\cf0  
+\f4\i \cf9 grid between columns
+\f3\i0 \cf0  \cf4 highlighted rows\cf0  \{1, 2\} 
+\f2\b with
+\f3\b0  \cf4 alternate backgrounds\cf0 \
+
+\f2\b \cf4 display table
+\f3\b0 \cf0  \cf5 theTable\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+You can also control whether columns can be dragged to reorder them (by dragging the headers), and whether rows can be be dragged to reorder them. In the case of columns, the default is true, and dragging columns has no affect on the order in which results are ordered in the table reply record; it's purely a convenience for the user. Row dragging, on the other hand, does affect the order of results, and is false by default. You can also only drag one row at a time. Here is an example:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theTable\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 make new table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three"\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four"\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five"\}\} \cf4 with prompt\cf0  "Drag a row to change the order of things" 
+\f2\b with
+\f3\b0  \cf4 row numbering\cf0 \
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 modify table
+\f3\b0 \cf0  \cf5 theTable\cf0  
+\f2\b with
+\f3\b0  \cf4 row dragging\cf0 \
+
+\f2\b \cf4 display table
+\f3\b0 \cf0  \cf5 theTable\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+You can also supply what is called a 
+\f5\i column widths pattern
+\f1\i0 . Normally, columns are sized according to their longest line, but there can be times when a table will look better with some columns being equal in width. A column widths pattern is a list of integers in column order. Zeros are ignored, but if any columns share a number, then all the columns with that number are sized wide enough to fit the longest entry in any of them. Here is an example using the pattern \{1, 2, 1, 2\}, which means that the first and third columns should be the same width, as should the second and fourth.\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theTable\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 make new table with data
+\f3\b0 \cf0  \{\{1, "One", 100, "One hundred"\}, \{2, "Two", 200, "Two hundred"\}, \{3, "Three", 300, "Three hundred"\}, \{4, "Four", 400, "Four hundred"\}, \{5, "Five", 400, "Five hundred"\}\} \cf4 column headings\cf0  \{"No", "Text", "No", "Text"\} \cf4 with prompt\cf0  "This table uses a column widths pattern" 
+\f2\b with
+\f3\b0  \cf4 row numbering\cf0 \
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 modify table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 grid style\cf0  
+\f4\i \cf9 grid between columns
+\f3\i0 \cf0  \cf4 column widths pattern\cf0  \{1, 2, 1, 2\}\
+
+\f2\b \cf4 display table
+\f3\b0 \cf0  \cf5 theTable\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+Compare the above script to running it without the pattern. And notice that the pattern doesn't have to cover all columns.\
+\
+You can also control whether the OK button responds to the return key by setting the 
+\f5\i OK button is default
+\f1\i0  parameter to false.\
+\
+Version 1.0.7 adds another parameter, 
+\f5\i initial position
+\f1\i0 . This is a list of either two or four numbers that set the initial position of the dialog. The format is 
+\f5\i \{x, y\}
+\f1\i0  to set the top-left position, or 
+\f5\i \{x, y, width, height\}
+\f1\i0  to set both position and size. Width values must be 200 or greater (and at least 300 if the third button is to be displayed), and height values at least 250, and the values may be overridden if required. If not provided or 
+\f5\i missing value
+\f1\i0 , the dialog will be centered.\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf2 set
+\f3\b0  \cf10 theTable\cf2  
+\f2\b to
+\f3\b0  
+\f2\b \cf7 make new table with data
+\f3\b0 \cf2  \{\{1.0, 1, 1.11, 1\}, \{-2.0, 2, 2.2, 2\}, \{3.11, -3, 3.11, 3\}, \{4.0, 4, -4.41, 4\}, \{5.0, 5, 5.55, -5\}\} \cf7 column headings\cf2  \{"Reals", "Integers", "Reals", "Integers"\} \cf7 with prompt\cf2  "This table appears at the top-left of the screen"\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf7 modify table
+\f3\b0 \cf2  \cf10 theTable\cf2  \cf7 initial position\cf2  \{0, 0\} 
+\f2\b with
+\f3\b0  \cf7 alternate backgrounds\cf2 \
+
+\f2\b \cf7 display table
+\f3\b0 \cf2  \cf10 theTable\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf2 set
+\f3\b0  \cf10 theTable\cf2  
+\f2\b to
+\f3\b0  
+\f2\b \cf7 make new table with data
+\f3\b0 \cf2  \{\{1.0, 1, 1.11, 1\}, \{-2.0, 2, 2.2, 2\}, \{3.11, -3, 3.11, 3\}, \{4.0, 4, -4.41, 4\}, \{5.0, 5, 5.55, -5\}\} \cf7 column headings\cf2  \{"Reals", "Integers", "Reals", "Integers"\} \cf7 with prompt\cf2  "This table's size and position have been set in the script"\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf7 modify table
+\f3\b0 \cf2  \cf10 theTable\cf2  \cf7 initial position\cf2  \{100, 10, 400, 400\} 
+\f2\b with
+\f3\b0  \cf7 alternate backgrounds\cf2 \
+
+\f2\b \cf7 display table
+\f3\b0 \cf2  \cf10 theTable
+\f1 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+\cf0 \
+The final parameter is 
+\f5\i accessory view
+\f1\i0 , and this is for serious AppleScriptObjC users. You can pass an NSView containing other controls to this parameter, and it will appear in the dialog just above the buttons.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Configuring columns\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+All these table properties are useful, but sometimes you need control at the column level. For that, you can use the 
+\f0\b modify columns in table
+\f1\b0  command, similarly to how you use modify table. All the parameters are optional.\
+\
+The main optional parameter is 
+\f5\i columns list
+\f1\i0 , to which you pass a list of the indexes of the columns you wish to modify. If you pass an empty list, or just omit the parameter, the changes will apply to all columns, where applicable (some parameters only apply to particular types of column).\
+\
+The 
+\f5\i column width
+\f1\i0  parameter lets you set the width of columns manually, in points. The default value is 0, which means automatic sizing, but there may be situations where you want to control a column\'92s width yourself \'97 for example, where you expect the user to enter values in a column that is initially full of empty strings.\
+\
+There are two sorting-related parameters, 
+\f5\i sort method
+\f1\i0  and 
+\f5\i sorting column
+\f1\i0 . By default, text columns (plus popup and combo box columns) are sorted in case-insensitive order. You can use the 
+\f5\i sort method
+\f1\i0  parameter to change this, including an option that sorts the same way as the Finder does. You can use the 
+\f5\i sorting column
+\f1\i0  parameter to have a column sort based on the order of a different column. You need to be careful: this parameter requires the index of the column 
+\f5\i in your data
+\f1\i0 , which may not be the same as its index 
+\f5\i in the table
+\f1\i0  (it may be a column that does not appear in the table, for example). Let\'92s say you have a column of titles of movies, but you want all the ones whose titles begin with "The \'93, "A " or "An " to sort as if the article was not there. You can do this by having an extra column without the articles, using a 
+\f5\i row template
+\f1\i0  parameter and including 
+\f5\i missing value
+\f1\i0  for the heading of this column so it does not appear in the table, and then setting the \ul sorting column\ulnone  of the visible column to the index of the invisible one.\
+\
+Here is an example of how it works in a different context:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theTable\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 make new table with data
+\f3\b0 \cf0  \{\{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "One", 1\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Two", 2\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Three", 3\}, \{
+\f4\i \cf6 false
+\f3\i0 \cf0 , "Four", 4\}, \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "Five", 5\}\} \cf4 column headings\cf0  \{"", "Number"\} \cf4 row template\cf0  \{
+\f4\i \cf6 true
+\f3\i0 \cf0 , "", 
+\f4\i \cf3 missing value
+\f3\i0 \cf0 \} \cf4 with prompt\cf0  "Click the heading to sort: it will be based on numerical value, not text sorting"\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 modify columns in table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 columns list\cf0  \{2\} \cf4 sorting data column\cf0  3\
+
+\f2\b \cf4 display table
+\f3\b0 \cf0  \cf5 theTable\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+The table appears with just two columns: checkboxes and the text entries. But if you click on the Number column, the sorting is based on column 3 of the data, rather than alphabetical order.\
+\
+There are two alignment-related parameters, one for the column heading, if any, and the other for column entries. And there is a parameter that controls the 
+\f5\i truncation style
+\f1\i0  \'97 how entries that are too wide for a column are shown.\
+\
+Three format parameters let you modify date, real and integer formatting. These apply only to the relevant columns \'97 if you specify a 
+\f5\i date format
+\f1\i0  when modifying all columns, for example, it will only affect any date columns.\
+\
+So if you wanted all headings to be centered, the text entries centered, and any columns of reals to show three decimal places, you could do this:\
+\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf0 set
+\f3\b0  \cf5 theTable\cf0  
+\f2\b to
+\f3\b0  
+\f2\b \cf4 make new table with data
+\f3\b0 \cf0  \{\{1.0, "One", 1.1\}, \{2.0, "Two", 2.2\}, \{3.0, "Three", 3.3\}, \{4.0, "Four", 4.4\}, \{5.0, "Five", 5.5\}\} \cf4 column headings\cf0  \{"Reals", "Text", "Reals"\} \cf4 with prompt\cf0  "Note the changes is alignment and formatting"\
+\pard\pardeftab560\li560\fi-560\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf4 modify columns in table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 head alignment\cf0  
+\f4\i \cf9 align center
+\f3\i0 \cf0  \cf4 real format\cf0  "#,##0.000;-#,##0.000"\
+
+\f2\b \cf4 modify columns in table
+\f3\b0 \cf0  \cf5 theTable\cf0  \cf4 columns list\cf0  \{2\} \cf4 entry alignment\cf0  
+\f4\i \cf9 align center
+\f3\i0 \cf0 \
+
+\f2\b \cf4 display table
+\f3\b0 \cf0  \cf5 theTable\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 You can also specify that negative numbers appear in red via the 
+\f5\i red negatives
+\f1\i0  parameter, whether text, date or number entries appear in bold via the 
+\f5\i bold type
+\f1\i0  parameter, and whether entries use a variation of the font that has monospaced digits via the 
+\f5\i monospaced digits
+\f1\i0  parameter. The latter requires macOS 10.11 or later; it is ignored on earlier versions of the system. Here is a sample showing these features:\
+\
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf2 set
+\f3\b0  \cf10 theTable\cf2  
+\f2\b to
+\f3\b0  
+\f2\b \cf7 make new table with data
+\f3\b0 \cf2  \{\{1.0, 1, 1.11, 1, "One"\}, \{-2.0, 2, 2.2, 2, "Three" & \cf8 linefeed\cf2  & "four" & \cf8 linefeed\cf2  & "five"\}, \{3.11, -3, 3.11, 3, "Two"\}, \{4.0, 4, -4.41, 4, "Seven"\}, \{5.0, 5, 5.55, -5, "Three" & \cf8 linefeed\cf2  & "four" & \cf8 linefeed\cf2  & "five"\}\} \cf7 column headings\cf2  \{"Reals", "Integers", "Reals", "Integers", "Text"\} \cf7 with prompt\cf2  "This table combines the new features in version 1.0.6" 
+\f2\b with
+\f3\b0  \cf7 multiple lines allowed\cf2 \
+\pard\pardeftab480\slleading40\pardirnatural\partightenfactor0
+
+\f2\b \cf7 modify columns in table
+\f3\b0 \cf2  \cf10 theTable\cf2  \cf7 columns list\cf2  \{1, 2, 3, 4\} 
+\f2\b with
+\f3\b0  \cf7 monospaced digits\cf2  
+\f2\b and
+\f3\b0  \cf7 red negatives\cf2 \
+
+\f2\b \cf7 modify columns in table
+\f3\b0 \cf2  \cf10 theTable\cf2  \cf7 columns list\cf2  \{2\} 
+\f2\b with
+\f3\b0  \cf7 bold type\cf2 \
+
+\f2\b \cf7 modify table
+\f3\b0 \cf2  \cf10 theTable\cf2  
+\f2\b with
+\f3\b0  \cf7 hidden cancel button\cf2  
+\f2\b and
+\f3\b0  \cf7 alternate backgrounds\cf2 \
+
+\f2\b \cf7 display table
+\f3\b0 \cf2  \cf10 theTable\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Results\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+If the Cancel button is clicked, the result is error number -128, which is the standard user canceled error. This is unlike 
+\f0\b choose from list
+\f1\b0 , but like every other dialog; 
+\f0\b choose from list
+\f1\b0  is the odd one out, for reasons of backwards compatibility.\
+\
+Otherwise, by default a 
+\f0\b table reply 
+\f1\b0 record is returned, containing several values. The 
+\f5\i button number
+\f1\i0  tells you which button was pressed: 1 if the OK button was pressed, 0 if no button was pressed and the dialog timed-out, and 2 if an optional extra button is pressed. The 
+\f5\i values returned
+\f1\i0  value is the list of lists as modified by the dialog. The 
+\f5\i rows selected
+\f1\i0  value is a list of the indexes of the rows selected when the button was pressed. The 
+\f5\i values selected
+\f1\i0  value is a list of the values in the selected rows. The 
+\f5\i timed out
+\f1\i0  value is a boolean that is true if the dialog timed out. \
+\
+Version 1.0.7 adds another value, 
+\f5\i final position
+\f1\i0 . This is a list of the screen coordinates of the dialog when it was closed, in the form 
+\f5\i \{x, y, width, height\}
+\f1\i0 . See the enclosed sample file for how you can use this to control the position of subsequent dialogs.\
+\
+The 
+\f0\b display table command
+\f1\b0  has another optional parameter, 
+\f0\b extended results
+\f1\b0 . If set to true, the result is an 
+\f0\b extended table reply
+\f1\b0 . This is a record with the same values as a 
+\f0\b table reply
+\f1\b0 , but also four others: 
+\f5\i altered rows
+\f1\i0 , 
+\f5\i deleted rows
+\f1\i0 , 
+\f5\i added rows
+\f1\i0 , and 
+\f5\i order of rows
+\f1\i0 . Whether these are useful depends to an extent on what parameters you have set for the table. If you allow adding and deleting, 
+\f5\i order of rows
+\f1\i0  may not make much sense; if you do not allow adding and deleting, 
+\f5\i deleted rows
+\f1\i0  and 
+\f5\i added rows
+\f1\i0  will be empty lists. See the dictionary for more details, and keep in mind that some return indexes based on table columns, while others are based on column indexes in your data.\
+\
+If your data contains columns of classes other than text, number, boolean or date, they will be returned but they might be modified. For example, if your data contains a column of aliases, they will be returned as file references. If your data contains records, there might be slight changes to some values in them. You should run a test first.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Utility commands\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+The Myriad Tables Utilities Suite has two commands for dealing with data. The 
+\f0\b swap columns and rows in
+\f1\b0  command is useful if you have a list of columns, and you want them converted to rows. The 
+\f0\b extract column
+\f1\b0  command will give you a list of the values that would appear in a table column.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Changes\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+Version 1.0.1 fixed an issue where boolean values were sometimes returned as 0 or 1 rather than false or true. In version 1.0.2, the 
+\f5\i gave up
+\f1\i0  parameter has been renamed 
+\f5\i timed out
+\f1\i0  to avoid a conflict with Standard Additions. Version 1.0.3 fixes problems with the 
+\f5\i initially selected rows
+\f1\i0  parameter. Version 1.0.4 fixes a problem with framework expiry. \
+\
+Version 1.0.5 fixes a bug that occurs when an row template of \{\} is specified. It also introduces a new parameter to the 
+\f0\b modify columns in table
+\f1\b0  command, 
+\f5\i user data format
+\f1\i0 . This can be used instead of the 
+\f5\i date format
+\f1\i0  parameter to format dates according to the user\'92s settings in System Preferences. See the dictionary entry for further details.\
+\
+Version 1.0.6 introduces the 
+\f5\i multiple lines allowed
+\f1\i0  parameter to the 
+\f0\b make new table with data
+\f1\b0  and 
+\f0\b display table with data
+\f1\b0  commands. The
+\f0\b  modify table command
+\f1\b0  has a new 
+\f5\i hidden cancel button
+\f1\i0  parameter. The 
+\f0\b modify columns in table
+\f1\b0  command has three new parameters: 
+\f5\i red negatives
+\f1\i0 , 
+\f5\i bold type
+\f1\i0 , and 
+\f5\i monospaced digits
+\f1\i0 . It also removes some of the threading issues involved with adding an accessory view, and is localized for Japanese.\
+\
+Version 1.0.7 introduces the 
+\f5\i double click means OK
+\f1\i0  parameter to the 
+\f0\b make new table with data
+\f1\b0  and 
+\f0\b display table with data
+\f1\b0  commands. The
+\f0\b  modify table command
+\f1\b0  has a new 
+\f5\i initial position
+\f1\i0  parameter. The 
+\f0\b table reply
+\f1\b0  and 
+\f0\b extended table reply
+\f1\b0  records include a new 
+\f5\i final position
+\f1\i0  value.\
+\
+Version 1.0.8 fixes a problem that occurs when a script is run from the Scripts menu in some versions of Script Debugger.\
+\
+Version 1.0.9 fixes issues in Dark Mode when running in macOS 10.14. The changes also mean the highlight color is different. It also add the ability to have a text column displayed securely with letters appearing as bullet characters. To do this, you must specify the 
+\f0\b row template
+\f1\b0  property, and the value for the column you wish to appear this way must contain the string 
+\f6 "hidden"
+\f1 . German localization has also been added.\
+\
+Version 1.0.10 allows duplicate items in popup menus. Also works around an arcane AppleScript compiler bug that can cause problems with keyword 
+\f0\b reference
+\f1\b0 .\
+\
+Version 1.0.11 fixes a window positioning issue when running more than one screen.\
+\
+Version 1.0.13 fixes an issue where right and center alignments of headings and columns could beome transposed.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Feedback and updates\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+I welcome feedback: Shane Stanley, <sstanley@myriad-com.com.au>. If you find this software useful, shareware donations are welcome.\
+\
+Apart from the basic dialog buttons, 
+\f0\b Myriad Tables Lib
+\f1\b0  is localized for French and Japanese. If you would like to see other languages supported and can help with translation, please contact me.\
+\
+The latest version can be downloaded from: {\field{\*\fldinst{HYPERLINK "https://latenightsw.com/support/freeware/"}}{\fldrslt https://latenightsw.com/support/freeware/}}. Should you update to a newer version, you should relaunch any applications that have used a previous version since they were launched. (This basically applies to script editors, script launchers like FastScripts, and applications with their own script menus or panels.)\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Acknowledgements
+\fs48 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+Thanks to those who tested the library, especially Ed Stockly and Nigel Garvey, and to Yvan Koenig, Jean-Christophe Helary and Karsten Fischer for their translations. Thanks to Mark Alldritt for his work on Script Debugger compatibility, and Chris Page for the missing interaction key. \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Licence\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf0 \
+Myriad Tables Lib is Copyright \'a9 2016-23 Shane Stanley <sstanley@myriad-com.com.au>\
+All rights reserved.\
+\
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software to use, copy, and distribute copies, including within commercial software, subject to the following conditions:\
+\
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\
+\
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\
+}
