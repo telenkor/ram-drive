@@ -16,3 +16,7 @@ If you have a sufficient amount of RAM and you rarely use all of it, then with t
 - Easy mounting and unmounting
  
 Another feature of using this program is saving SSD resources. For example, if you place temporary Photoshop files or browser cache here.
+
+## System Requirements
+- Mac OS Yosemite (10.10) or later
+- Not tested on Apple M-series
