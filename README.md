@@ -1,5 +1,5 @@
 # RAM Drive
-RAM Drive for Mac OS with a simple graphical user interface. AppleScript powered.
+RAM Drive for Mac OS with a simple graphical user interface. AppleScript powered. Designed to create a disk partition in RAM.
 
 If you have a sufficient amount of RAM and you rarely use all of it, then with this program you can:
 - Place some cache here
