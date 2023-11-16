@@ -2,9 +2,9 @@
 RAM Drive for Mac OS with a simple graphical user interface. AppleScript powered. Designed to create a disk partition in RAM.
 
 If you have a sufficient amount of RAM and you rarely use all of it, then with this program you can:
-- Place some cache here
+- Use as a cache storage
 - Use as a temporary folder for anything
-- If your data requires very fast access
+- Work with data if it requires very fast access
 
 <p align="center">
 <img width="231" height="247" src="https://github.com/divrn/ram-drive/assets/31967374/2571220e-6ca4-47f8-93e6-38d538ed97b7">
