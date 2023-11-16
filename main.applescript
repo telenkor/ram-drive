@@ -17,19 +17,16 @@ use script "Myriad Tables Lib" version "1.0.13"
 
 -- Language auto selection
 if (user locale of (system info)) = "ru_RU" then
-	
 	-- По-русски
 	set msg_size to "Объем диска, МБ"
 	set msg_volume to "Имя тома:"
 	set msg_header to "Выберите объем и имя тома:"
 	
 else
-	
 	-- In English
 	set msg_size to "Disk size, MB"
 	set msg_volume to "Volume name:"
 	set msg_header to "Select size and volume name:"
-	
 end if
 
 set Table to make new table with data {{"4096", "RAM Disk"}, {"8192", "RAM Disk"}, {"16384", "RAM Disk"}} ¬
@@ -47,7 +44,7 @@ end repeat
 
 -- Check if the_Volume is already mounted. If true, then rename the_Volume to the_Volume_n
 tell application "System Events" to set diskNames to name of every disk
-set the_Volume_ to "RAM Disk_"
+set the_Volume_ to the_Volume & "_"
 repeat with i from 1 to (count diskNames)
 	if i = 1 then
 		if the_Volume is in diskNames then
