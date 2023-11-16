@@ -41,7 +41,7 @@ set Table to make new table with data {{"6666", "Photoshop_cache"}}
 
 If you already have one disk mounted and you want to mount another one, then it is not necessary to change its name to a unique one. The application will not allow identical names and will automatically add _1, _2... to the name.
 
-> Do not save important information in a single copy to this disk.
+> :warning: Do not save important information in a single copy to this disk.
 > It is not intended for long-term storage.
 > A power failure or rebooting your computer will permanently destroy all data!
 
