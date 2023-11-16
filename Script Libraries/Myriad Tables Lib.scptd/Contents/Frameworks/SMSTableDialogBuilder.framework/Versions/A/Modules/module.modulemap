@@ -1,6 +1,0 @@
-framework module SMSTableDialogBuilder {
-  umbrella header "SMSTableDialogBuilder.h"
-
-  export *
-  module * { export * }
-}
