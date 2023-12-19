@@ -2,8 +2,8 @@
 --          RAM Drive: creating disk in RAM
 --          Autor: Dmitry Chushkin
 --          Version: 2.1.0
---          Released under GNU Public License (GPL)
---          regdvc@gmail.com 				
+--          https://github.com/telenkor/ram-drive
+--          mail@chushkin.com
 --------------------------------------------------------------------------
 
 use AppleScript version "2.4" -- Yosemite (10.10) or later
