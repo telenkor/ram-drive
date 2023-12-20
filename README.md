@@ -7,13 +7,13 @@ If you have a sufficient amount of RAM and you rarely use all of it, then with t
 - Work with data if it requires very fast access
 
 <p align="center">
-<img width="231" height="247" src="https://github.com/divrn/ram-drive/assets/31967374/2571220e-6ca4-47f8-93e6-38d538ed97b7">
+<img width="231" src="https://github.com/divrn/ram-drive/assets/31967374/2571220e-6ca4-47f8-93e6-38d538ed97b7">
 </p>
 
 ## Features
 
 <p align="center">
-<img width="480" height="247" src="https://github.com/divrn/ram-drive/assets/31967374/275f18e1-2133-4227-82ef-9f35765c0a27">
+<img width="480" src="https://github.com/divrn/ram-drive/assets/31967374/275f18e1-2133-4227-82ef-9f35765c0a27">
 </p>
 
 - Very high read/write speed
