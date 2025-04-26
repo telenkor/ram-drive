@@ -3,7 +3,7 @@
 --          Autor: Dmitry Chushkin
 --          Version: 2.1.0
 --          https://github.com/telenkor/ram-drive
---          mail@chushkin.com
+--          dev@36pix.ru
 --------------------------------------------------------------------------
 
 use AppleScript version "2.4" -- Yosemite (10.10) or later
