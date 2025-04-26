@@ -1,5 +1,15 @@
-# RAM Drive
-RAM Drive for Mac OS with a simple graphical user interface. AppleScript powered. Designed to create a disk partition in RAM.
+<div align="center">
+  <h1 align="center">RAM Drive</h1>
+
+  <p align="center">
+    RAM Drive for Mac OS with a simple graphical user interface. Designed to create a disk partition in RAM. AppleScript powered.
+    <br />
+    <a href="https://github.com/telenkor/ram-drive/releases"><strong>Get the latest release</strong></a>
+    <br />
+  </p>
+</div>
+ 
+## About The Project
 
 If you have a sufficient amount of RAM and you rarely use all of it, then with this program you can:
 - Use as a cache storage
